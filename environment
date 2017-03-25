@@ -1,0 +1,9 @@
+#!/bin/sh
+
+BSPJOB=8
+BSPROOT=`pwd`
+BSPTOOLS=${BSPROOT}/tools
+BSPROOTFS=${BSPROOT}/release/rootfs
+PATH=${BSPTOOLS}/o/bin:${PATH}
+
+export BSPJOB BSPROOT BSPTOOLS BSPROOTFS PATH
