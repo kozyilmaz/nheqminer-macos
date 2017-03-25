@@ -3,7 +3,7 @@ target_name ?= boost
 
 include ../Makefile.build
 
-AUTOMAKE_VERSION="1.63.0"
+BOOST_VERSION="1.63.0"
 
 boost_clone:
 	if [ ! -d "$(BOOST_VERSION)" ]; then git clone -b $(BOOST_VERSION) --recursive https://github.com/boostorg/boost.git $(BOOST_VERSION); fi
