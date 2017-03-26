@@ -5,6 +5,7 @@ endif
 
 subdir-y := tools
 subdir-y += boost
+subdir-y += nheqminer
 
 include Makefile.lib
 
