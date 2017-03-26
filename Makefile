@@ -11,7 +11,7 @@ include Makefile.lib
 
 check_tools: __FORCE
 	@if [ ! -d tools/o/bin ]; then \
-		make tools; \
+		ENABLE_CMAKE=y ENABLE_GCC=y make tools; \
 	fi
 
 clone:
