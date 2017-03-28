@@ -10,13 +10,13 @@ nheqminer_clone:
 	if [ ! -d "nheqminer-$(NHEQMINER_VERSION)" ]; then tar xvf nheqminer-$(NHEQMINER_VERSION).tar.gz; fi
 
 nheqminer_config:
-	( cd nheqminer-$(NHEQMINER_VERSION); BOOST_ROOT=${BSPROOTFS} cmake -DCMAKE_INSTALL_PREFIX=${BSPROOTFS} -DUSE_CUDA_DJEZO=OFF . )
+	( cd nheqminer-$(NHEQMINER_VERSION); CC=gcc-6.3.0 CXX=g++-6.3.0 BOOST_ROOT=${BSPROOTFS} cmake -DCMAKE_INSTALL_PREFIX=${BSPROOTFS} -DUSE_CUDA_DJEZO=OFF . )
 
 nheqminer_build:
-	make -C nheqminer-$(AUTOMAKE_VERSION) -j ${BSPJOB}
+	make -C nheqminer-$(NHEQMINER_VERSION) -j ${BSPJOB}
 
 nheqminer_install:
-	make -C nheqminer-$(AUTOMAKE_VERSION) -j ${BSPJOB} install
+	make -C nheqminer-$(NHEQMINER_VERSION) -j ${BSPJOB} install
 
 nheqminer_uninstall:
 	make -C nheqminer-$(NHEQMINER_VERSION) uninstall
