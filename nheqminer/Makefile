@@ -10,7 +10,7 @@ nheqminer_clone:
 	if [ ! -d "nheqminer-$(NHEQMINER_VERSION)" ]; then tar xvf nheqminer-$(NHEQMINER_VERSION).tar.gz; fi
 
 nheqminer_config:
-	( cd nheqminer-$(NHEQMINER_VERSION); ./configure --prefix=${BSPROOTFS}; )
+	( cd nheqminer-$(NHEQMINER_VERSION); BOOST_ROOT=${BSPROOTFS} cmake -DCMAKE_INSTALL_PREFIX=${BSPROOTFS} -DUSE_CUDA_DJEZO=OFF . )
 
 nheqminer_build:
 	make -C nheqminer-$(AUTOMAKE_VERSION) -j ${BSPJOB}
