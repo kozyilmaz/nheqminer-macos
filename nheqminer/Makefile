@@ -11,7 +11,7 @@ nheqminer_clone:
 
 nheqminer_config:
 	$(call patchme,nheqminer-$(NHEQMINER_VERSION))
-	( cd nheqminer-$(NHEQMINER_VERSION)/cpu_xenoncat/asm_linux; sh assemble.sh; )
+	( cd nheqminer-$(NHEQMINER_VERSION)/cpu_xenoncat/asm_linux; rm -rf equihash_avx*.elf.o equihash_avx*.o ; sh assemble.sh; )
 	( cd nheqminer-$(NHEQMINER_VERSION); CC=gcc-6.3.0 CXX=g++-6.3.0 BOOST_ROOT=${BSPROOTFS} cmake -DCMAKE_INSTALL_PREFIX=${BSPROOTFS} -DUSE_CUDA_DJEZO=OFF .; )
 
 nheqminer_build:
