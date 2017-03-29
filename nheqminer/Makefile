@@ -18,7 +18,7 @@ nheqminer_build:
 	make -C nheqminer-build -j ${BSPJOB}
 
 nheqminer_install:
-	if [ -f "nheqminer-build/nheqminer" ]; then cp nheqminer-build/nheqminer .; fi
+	if [ -f "nheqminer-build/nheqminer" ]; then cp nheqminer-build/nheqminer nheqminer-macos; fi
 
 nheqminer_uninstall:
 	@true
