@@ -3,7 +3,8 @@ ifeq ($(BSPROOT),)
     $(error You must first run 'source environment')
 endif
 
-subdir-y := boost
+subdir-y := tools
+subdir-y += boost
 subdir-y += nheqminer
 
 include Makefile.lib
