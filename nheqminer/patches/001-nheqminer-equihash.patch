@@ -1,0 +1,13 @@
+diff --git a/cpu_xenoncat/asm_linux/assemble.sh b/cpu_xenoncat/asm_linux/assemble.sh
+index e4ba692..1377cc3 100644
+--- a/cpu_xenoncat/asm_linux/assemble.sh
++++ b/cpu_xenoncat/asm_linux/assemble.sh
+@@ -1,2 +1,6 @@
+-./fasm -m 1280000 equihash_avx1.asm
+-./fasm -m 1280000 equihash_avx2.asm
++fasm -m 1280000 equihash_avx1.asm
++fasm -m 1280000 equihash_avx2.asm
++mv equihash_avx1.o equihash_avx1.elf.o
++mv equihash_avx2.o equihash_avx2.elf.o
++objconv -fmacho64 -nu equihash_avx1.elf.o equihash_avx1.o
++objconv -fmacho64 -nu equihash_avx2.elf.o equihash_avx2.o
