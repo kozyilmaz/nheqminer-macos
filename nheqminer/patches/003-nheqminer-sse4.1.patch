@@ -1,0 +1,18 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index f906675..b899bb3 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -41,8 +41,13 @@ if(CMAKE_COMPILER_IS_GNUCXX)
+ #    add_definitions(-O3)
+ 
+     # use
++if (USE_CPU_SSE41)
++    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m64 -msse4.1")
++    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m64 -msse4.1")
++else()
+     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -m64 -msse2")
+     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -m64 -msse2")
++endif()
+     # optimizations
+     add_definitions(-O2)
+ endif()
