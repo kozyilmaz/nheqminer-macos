@@ -1,5 +1,5 @@
 diff --git a/nheqminer/serialize.h b/nheqminer/serialize.h
-index ecb6cf1..e103de0 100644
+index ecb6cf1..6414344 100644
 --- a/nheqminer/serialize.h
 +++ b/nheqminer/serialize.h
 @@ -652,9 +652,14 @@ void Serialize_impl(Stream& os, const std::vector<T, A>& v, int nType, int nVers
@@ -11,8 +11,8 @@ index ecb6cf1..e103de0 100644
      for (typename std::vector<T, A>::const_iterator vi = v.begin(); vi != v.end(); ++vi)
          ::Serialize(os, (*vi), nType, nVersion);
 +#else
-+#warning "disabled function due to clang ambiguity complaints!"
 +    assert(0);
++    exit(1);
 +#endif
  }
  
