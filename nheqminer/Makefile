@@ -15,16 +15,17 @@ nheqminer_config:
 	( mkdir -p nheqminer-build; cd nheqminer-build; CC=gcc-6.3.0 CXX=g++-6.3.0 BOOST_ROOT=${BSPROOTFS} cmake -DCMAKE_INSTALL_PREFIX=${BSPROOTFS} -DUSE_CPU_TROMP=OFF -DUSE_CUDA_TROMP=OFF -DUSE_CPU_XENONCAT=ON -DUSE_CUDA_DJEZO=OFF ../nheqminer-$(NHEQMINER_VERSION); )
 
 nheqminer_build:
-	make -C nheqminer-$(NHEQMINER_VERSION) -j ${BSPJOB}
+	make -C nheqminer-build -j ${BSPJOB}
 
 nheqminer_install:
-	make -C nheqminer-$(NHEQMINER_VERSION) -j ${BSPJOB} install
+	if [ -f "nheqminer-build/nheqminer" ]; then cp nheqminer-build/nheqminer .; fi
 
 nheqminer_uninstall:
-	make -C nheqminer-$(NHEQMINER_VERSION) uninstall
+	@true
 
 nheqminer_clean:
-	if [ -f "nheqminer-$(NHEQMINER_VERSION)/Makefile" ]; then make -C nheqminer-$(NHEQMINER_VERSION) distclean; fi
+	if [ -f "nheqminer-build/Makefile" ]; then make -C nheqminer-build clean; fi
 
 nheqminer_distclean:
+	rm -rf nheqminer-build
 	rm -rf nheqminer-$(NHEQMINER_VERSION)
