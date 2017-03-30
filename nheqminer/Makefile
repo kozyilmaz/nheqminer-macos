@@ -7,18 +7,18 @@ NHEQMINER_VERSION="0.5c"
 
 nheqminer_clone:
 	if [ ! -f "nheqminer-$(NHEQMINER_VERSION).tar.gz" ]; then curl -o nheqminer-$(NHEQMINER_VERSION).tar.gz -L https://github.com/nicehash/nheqminer/archive/$(NHEQMINER_VERSION).tar.gz; fi
-	if [ ! -d "nheqminer-$(NHEQMINER_VERSION)" ]; then tar xvf nheqminer-$(NHEQMINER_VERSION).tar.gz; ln -sf nheqminer-$(NHEQMINER_VERSION) nheqminer; fi
+	if [ ! -d "nheqminer-$(NHEQMINER_VERSION)" ]; then tar xvf nheqminer-$(NHEQMINER_VERSION).tar.gz; fi
+	if [ ! -d "nheqminer" ]; then ln -sf nheqminer-$(NHEQMINER_VERSION) nheqminer; fi
 
 nheqminer_config:
 	$(call patchme,nheqminer-$(NHEQMINER_VERSION))
 	( cd nheqminer-$(NHEQMINER_VERSION)/cpu_xenoncat/asm_mac; rm -rf equihash_avx*.elf.o equihash_avx*.o ; sh assemble.sh; )
 	( mkdir -p nheqminer-build; cd nheqminer-build; \
-		CC=gcc-6.3.0 CXX=g++-6.3.0 \
 		BOOST_ROOT=${BSPROOTFS} \
 		cmake -DCMAKE_INSTALL_PREFIX=${BSPROOTFS} \
-		-DCMAKE_CXX_FLAGS="-fvisibility=hidden -fvisibility-inlines-hidden" \
-		-DCMAKE_EXE_LINKER_FLAGS="-static-libgcc -static-libstdc++" \
-		-DUSE_CPU_TROMP=ON -DUSE_CUDA_TROMP=OFF -DUSE_CPU_XENONCAT=ON -DUSE_CUDA_DJEZO=OFF ../nheqminer-$(NHEQMINER_VERSION); \
+		-DCMAKE_CXX_FLAGS="-fvisibility=hidden" \
+		-DCMAKE_EXE_LINKER_FLAGS="-L/usr/local/cuda/lib" \
+		-DUSE_CPU_TROMP=OFF -DUSE_CUDA_TROMP=OFF -DUSE_CPU_XENONCAT=ON -DUSE_CUDA_DJEZO=ON ../nheqminer-$(NHEQMINER_VERSION); \
 	)
 
 nheqminer_build:
