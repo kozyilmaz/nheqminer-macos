@@ -13,7 +13,7 @@ boost_config:
 #	if [ ! -f boost_$(BOOST_VERSION)/tools/build/src/user-config.jam ]; then \
 #		echo "using darwin : 6.3 : ${BSPTOOLS}/o/bin/g++-6.3.0 ; " >> boost_$(BOOST_VERSION)/tools/build/src/user-config.jam; \
 #	fi
-	( cd boost_$(BOOST_VERSION); ./bootstrap.sh --prefix=${BSPROOTFS}; )
+	( cd boost_$(BOOST_VERSION); ./bootstrap.sh --prefix=${BSPROOTFS} --without-icu; )
 
 boost_build:
 #	( cd boost_$(BOOST_VERSION); ./b2 headers; ./b2 -j ${BSPJOB} link=static runtime-link=static threading=multi toolset=darwin-6.3; )
