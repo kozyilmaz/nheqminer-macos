@@ -34,7 +34,8 @@ NVIDIA CUDA settings
 Example: -cd 0 2 -cb 12 16 -ct 64 128
 ```
 
-```$ ./nheqminer -h
+```
+$ ./nheqminer -h
 
     ==================== www.nicehash.com ====================
 	Equihash CPU&GPU Miner for NiceHash v0.5c
