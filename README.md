@@ -1,6 +1,6 @@
 # Build instructions:
 
-`source environment`
+`source environment` 
 `make`
 
 ### Enabled solvers: 
