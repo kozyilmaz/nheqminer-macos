@@ -33,8 +33,8 @@ NVIDIA CUDA settings
 Example: -cd 0 2 -cb 12 16 -ct 64 128
 ```
 
-####Simple benchmarking
-`./nheqminer -b -t 2
+#### Simple benchmarking
+`./nheqminer -b -t 2`
 
-####Command line invocation for mining
+#### Command line invocation for mining
 `./nheqminer <cpu-mining-args> <gpu-mining-args> -l <server:port> -u <wallet-address>.<worker>`
