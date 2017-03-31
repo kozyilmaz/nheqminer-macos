@@ -1,5 +1,6 @@
 # Build instructions:
 
+`git clone --recursive https://github.com/kozyilmaz/nheqminer-macos.git`  
 `source environment`  
 `make`
 
