@@ -3,16 +3,16 @@ ifeq ($(BSPROOT),)
     $(error You must first run 'source environment')
 endif
 
-subdir-y := tools
-subdir-y += boost
+subdir-y := boost
 subdir-y += nheqminer
 
-include Makefile.lib
+boost_depends-y = \
+	$(shell if [ ! -d ${BSPTOOLS}/o/bin ]; then make -C tools; fi)
 
-check_tools: __FORCE
-	@if [ ! -d tools/o/bin ]; then \
-		ENABLE_GCC=n make tools; \
-	fi
+nheqminer_depends-y = \
+	boost
+
+include Makefile.lib
 
 clone:
 	@true

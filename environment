@@ -3,11 +3,13 @@
 BSPJOB=8
 BSPROOT=`pwd`
 BSPTOOLS=${BSPROOT}/tools
-BSPROOTFS=${BSPROOT}/release/rootfs
+BSPROOTFS=${BSPROOT}/rootfs
+BSPINSTALL=${BSPROOT} # nheqminer install path (maybe /usr/local/bin ?)
 PATH=${BSPTOOLS}/o/bin:${PATH}
 
-export BSPJOB BSPROOT BSPTOOLS BSPROOTFS PATH
+export BSPJOB BSPROOT BSPTOOLS BSPROOTFS BSPINSTALL PATH
 
+# tool selection
 export TOOLS_ENABLE_OBJCONV=y
 export TOOLS_ENABLE_FASM=y
 export TOOLS_ENABLE_CMAKE=y
