@@ -4,7 +4,7 @@ BSPJOB=8
 BSPROOT=`pwd`
 BSPTOOLS=${BSPROOT}/tools
 BSPROOTFS=${BSPROOT}/rootfs
-BSPINSTALL=${BSPROOT} # nheqminer install path (maybe /usr/local/bin ?)
+BSPINSTALL=${BSPROOT}/miner  # change to /usr/local/bin if you like!
 PATH=${BSPTOOLS}/o/bin:${PATH}
 
 export BSPJOB BSPROOT BSPTOOLS BSPROOTFS BSPINSTALL PATH
