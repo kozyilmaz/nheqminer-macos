@@ -13,26 +13,38 @@ nheqminer_clone:
 nheqminer_config:
 	$(call patchme,nheqminer-$(NHEQMINER_VERSION))
 	( cd nheqminer-$(NHEQMINER_VERSION)/cpu_xenoncat/asm_mac; rm -rf equihash_avx*.elf.o equihash_avx*.o ; sh assemble.sh; )
-	( mkdir -p nheqminer-build; cd nheqminer-build; \
+	( mkdir -p nheqminer-cpu; cd nheqminer-cpu; \
 		BOOST_ROOT=${BSPROOTFS} \
 		cmake -DCMAKE_INSTALL_PREFIX=${BSPINSTALL} \
 		-DCMAKE_CXX_FLAGS="-fvisibility=hidden" \
 		-DCMAKE_EXE_LINKER_FLAGS="-L/usr/local/cuda/lib" \
 		-DUSE_CPU_TROMP=ON -DUSE_CUDA_TROMP=OFF -DUSE_CPU_XENONCAT=ON -DUSE_CUDA_DJEZO=OFF ../nheqminer-$(NHEQMINER_VERSION); \
 	)
+	( mkdir -p nheqminer-gpu; cd nheqminer-gpu; \
+		BOOST_ROOT=${BSPROOTFS} \
+		cmake -DCMAKE_INSTALL_PREFIX=${BSPINSTALL} \
+		-DCMAKE_CXX_FLAGS="-fvisibility=hidden" \
+		-DCMAKE_EXE_LINKER_FLAGS="-L/usr/local/cuda/lib" \
+		-DUSE_CPU_TROMP=OFF -DUSE_CUDA_TROMP=OFF -DUSE_CPU_XENONCAT=ON -DUSE_CUDA_DJEZO=OFF ../nheqminer-$(NHEQMINER_VERSION); \
+	)
 
 nheqminer_build:
-	make -C nheqminer-build -j ${BSPJOB}
+	make -C nheqminer-cpu -j ${BSPJOB}
+	make -C nheqminer-gpu -j ${BSPJOB}
 
 nheqminer_install:
-	if [ -f "nheqminer-build/nheqminer" ]; then cp -af nheqminer-build/nheqminer ${BSPINSTALL}/nheqminer; fi
+	if [ -f "nheqminer-cpu/nheqminer" ]; then cp -af nheqminer-cpu/nheqminer ${BSPINSTALL}/nheqminer-cpu; fi
+	if [ -f "nheqminer-gpu/nheqminer" ]; then cp -af nheqminer-gpu/nheqminer ${BSPINSTALL}/nheqminer-gpu; fi
 
 nheqminer_uninstall:
-	rm -rf ${BSPINSTALL}/nheqminer
+	rm -rf ${BSPINSTALL}/nheqminer-cpu
+	rm -rf ${BSPINSTALL}/nheqminer-cpu
 
 nheqminer_clean:
-	if [ -f "nheqminer-build/Makefile" ]; then make -C nheqminer-build clean; fi
+	if [ -f "nheqminer-cpu/Makefile" ]; then make -C nheqminer-cpu clean; fi
+	if [ -f "nheqminer-gpu/Makefile" ]; then make -C nheqminer-gpu clean; fi
 
 nheqminer_distclean:
-	rm -rf nheqminer-build
+	rm -rf nheqminer-cpu
+	rm -rf nheqminer-gpu
 	rm -rf nheqminer-$(NHEQMINER_VERSION)

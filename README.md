@@ -45,6 +45,7 @@ Example: -cd 0 2 -cb 12 16 -ct 64 128
 `./nheqminer <cpu-mining-args> <gpu-mining-args> -l <server:port> -u <wallet-address>.<worker>`
 
 
+
 ## Donations
 
 If you feel this project is useful to you. Feel free to donate.
