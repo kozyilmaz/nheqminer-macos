@@ -17,19 +17,6 @@ nheqminer-cpu (only CPU, SSE2 and AVX)[USE_CPU_TROMP, USE_CPU_XENONCAT]
 nheqminer-gpu (CPU & GPU, AVX and CUDA)[USE_CPU_XENONCAT, USE_CUDA_DJEZO]
 ```
 
-### Precompiled binaries created using
-- macOS 10.12.4 (16E195)
-- [CUDA Toolkit 8.0.61](https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda_8.0.61_mac-dmg) from https://developer.nvidia.com/cuda-downloads
-- [CUDA 8.0.71 driver for MAC](http://www.nvidia.com/object/macosx-cuda-8.0.71-driver.html) from http://www.nvidia.com/object/mac-driver-archive.html
-- [Command Line Tools (macOS 10.12) for XCode 8.2](http://adcdownload.apple.com/Developer_Tools/Command_Line_Tools_macOS_10.12_for_Xcode_8.2/Command_Line_Tools_macOS_10.12_for_Xcode_8.2.dmg) from https://developer.apple.com/download/more/
-
-
-### Enabled solvers
-  - USE_CPU_TROMP (Y)
-  - USE_CPU_XENONCAT (Y)
-  - USE_CUDA_TROMP (N)
-  - USE_CUDA_DJEZO (N)
-
 ### Run instructions
 
 ```Parameters: 
@@ -58,7 +45,6 @@ Example: -cd 0 2 -cb 12 16 -ct 64 128
 
 ### Command line invocation for mining
 `./nheqminer <cpu-mining-args> <gpu-mining-args> -l <server:port> -u <wallet-address>.<worker>`
-
 
 
 ## Donations
