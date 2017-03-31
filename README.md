@@ -1,4 +1,6 @@
-# Build instructions:
+# nheqminer for macOS
+
+### Build instructions
 
 `$ git clone --recursive https://github.com/kozyilmaz/nheqminer-macos.git`  
 `$ cd nheqminer-macos`  
