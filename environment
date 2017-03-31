@@ -1,6 +1,6 @@
 #!/bin/sh
 
-BSPJOB=16
+BSPJOB=8
 BSPROOT=`pwd`
 BSPTOOLS=${BSPROOT}/tools
 BSPROOTFS=${BSPROOT}/release/rootfs
