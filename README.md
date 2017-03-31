@@ -1,10 +1,8 @@
 # Build instructions:
 
-```
-git clone --recursive https://github.com/kozyilmaz/nheqminer-macos.git  
-source environment  
-make
-```
+`git clone --recursive https://github.com/kozyilmaz/nheqminer-macos.git`  
+`source environment`  
+`make`
 
 ### Enabled solvers: 
   - USE_CPU_TROMP (Y)
@@ -14,8 +12,7 @@ make
 
 # Run instructions:
 
-```
-Parameters: 
+```Parameters: 
     -h		Print this help and quit
     -l [location]	Stratum server:port
     -u [username]	Username (bitcoinaddress)
@@ -35,8 +32,8 @@ NVIDIA CUDA settings
     -ct [tpb]	Number of threads per block
 Example: -cd 0 2 -cb 12 16 -ct 64 128
 ```
-simple benchmarking
-`./nheqminer -b -t 2`
+simple benchmarking  
+`./nheqminer -b -t 2
 
-command line invocation for mining
+command line invocation for mining  
 `./nheqminer <cpu-mining-args> <gpu-mining-args> -l <server:port> -u <wallet-address>.<worker>`
