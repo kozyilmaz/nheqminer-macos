@@ -1,8 +1,10 @@
 # Build instructions:
 
-`git clone --recursive https://github.com/kozyilmaz/nheqminer-macos.git`  
-`source environment`  
-`make`
+```
+git clone --recursive https://github.com/kozyilmaz/nheqminer-macos.git  
+source environment  
+make
+```
 
 ### Enabled solvers: 
   - USE_CPU_TROMP (Y)
@@ -12,6 +14,7 @@
 
 # Run instructions:
 
+```
 Parameters: 
 	-h		Print this help and quit
 	-l [location]	Stratum server:port
@@ -30,6 +33,7 @@ NVIDIA CUDA settings
 	-cb [blocks]	Number of blocks
 	-ct [tpb]	Number of threads per block
 Example: -cd 0 2 -cb 12 16 -ct 64 128
+```
 
 If run without parameters, miner will start mining with 75% of available logical CPU cores. Use parameter -h to learn about available parameters:
 
