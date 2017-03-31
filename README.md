@@ -10,6 +10,8 @@
 `$ make`
 
 Two binaries will be created under `miner` directory  
+**NOTE: NVIDIA CUDA Toolkit 8.0 (from https://developer.nvidia.com/cuda-downloads) should be install for nheqminer-gpu **
+
 ```
 nheqminer-cpu (only CPU, SSE2 and AVX)[USE_CPU_TROMP, USE_CPU_XENONCAT]  
 nheqminer-gpu (CPU & GPU, AVX and CUDA)[USE_CPU_XENONCAT, USE_CUDA_DJEZO]
