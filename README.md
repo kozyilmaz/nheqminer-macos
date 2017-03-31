@@ -1,8 +1,8 @@
 # Build instructions:
 
-`git clone --recursive https://github.com/kozyilmaz/nheqminer-macos.git`  
-`source environment`  
-`make`
+`$ git clone --recursive https://github.com/kozyilmaz/nheqminer-macos.git`  
+`$ source environment`  
+`$ make`
 
 ### Enabled solvers: 
   - USE_CPU_TROMP (Y)
@@ -10,7 +10,7 @@
   - USE_CUDA_TROMP (N)
   - USE_CUDA_DJEZO (N)
 
-# Run instructions:
+### Run instructions:
 
 ```Parameters: 
     -h		Print this help and quit
@@ -32,8 +32,9 @@ NVIDIA CUDA settings
     -ct [tpb]	Number of threads per block
 Example: -cd 0 2 -cb 12 16 -ct 64 128
 ```
-simple benchmarking  
+
+####Simple benchmarking
 `./nheqminer -b -t 2
 
-command line invocation for mining  
+####Command line invocation for mining
 `./nheqminer <cpu-mining-args> <gpu-mining-args> -l <server:port> -u <wallet-address>.<worker>`
