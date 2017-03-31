@@ -15,7 +15,7 @@ nheqminer_config:
 	( cd nheqminer-$(NHEQMINER_VERSION)/cpu_xenoncat/asm_mac; rm -rf equihash_avx*.elf.o equihash_avx*.o ; sh assemble.sh; )
 	( mkdir -p nheqminer-build; cd nheqminer-build; \
 		BOOST_ROOT=${BSPROOTFS} \
-		cmake -DCMAKE_INSTALL_PREFIX=${BSPROOTFS} \
+		cmake -DCMAKE_INSTALL_PREFIX=${BSPINSTALL} \
 		-DCMAKE_CXX_FLAGS="-fvisibility=hidden" \
 		-DCMAKE_EXE_LINKER_FLAGS="-L/usr/local/cuda/lib" \
 		-DUSE_CPU_TROMP=ON -DUSE_CUDA_TROMP=OFF -DUSE_CPU_XENONCAT=ON -DUSE_CUDA_DJEZO=OFF ../nheqminer-$(NHEQMINER_VERSION); \
@@ -25,10 +25,10 @@ nheqminer_build:
 	make -C nheqminer-build -j ${BSPJOB}
 
 nheqminer_install:
-	if [ -f "nheqminer-build/nheqminer" ]; then cp nheqminer-build/nheqminer nheqminer-macos; fi
+	if [ -f "nheqminer-build/nheqminer" ]; then cp -af nheqminer-build/nheqminer ${BSPINSTALL}/nheqminer; fi
 
 nheqminer_uninstall:
-	@true
+	rm -rf ${BSPINSTALL}/nheqminer
 
 nheqminer_clean:
 	if [ -f "nheqminer-build/Makefile" ]; then make -C nheqminer-build clean; fi
