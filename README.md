@@ -4,13 +4,13 @@
 `$ source environment`  
 `$ make`
 
-### Enabled solvers: 
+### Enabled solvers
   - USE_CPU_TROMP (Y)
   - USE_CPU_XENONCAT (Y)
   - USE_CUDA_TROMP (N)
   - USE_CUDA_DJEZO (N)
 
-### Run instructions:
+### Run instructions
 
 ```Parameters: 
     -h		Print this help and quit
@@ -33,8 +33,8 @@ NVIDIA CUDA settings
 Example: -cd 0 2 -cb 12 16 -ct 64 128
 ```
 
-#### Simple benchmarking
+### Simple benchmarking
 `./nheqminer -b -t 2`
 
-#### Command line invocation for mining
+### Command line invocation for mining
 `./nheqminer <cpu-mining-args> <gpu-mining-args> -l <server:port> -u <wallet-address>.<worker>`
