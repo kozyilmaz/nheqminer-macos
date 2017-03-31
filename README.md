@@ -11,8 +11,8 @@
 
 Two binaries will be created under `miner` directory  
 ```
-nheqminer-cpu [USE_CPU_TROMP, USE_CPU_XENONCAT]  
-nheqminer-gpu [USE_CPU_XENONCAT, USE_CUDA_DJEZO]
+nheqminer-cpu (sse2 and avx)[USE_CPU_TROMP, USE_CPU_XENONCAT]  
+nheqminer-gpu (avx and cuda)[USE_CPU_XENONCAT, USE_CUDA_DJEZO]
 ```
 
 ### Precompiled binaries created using
