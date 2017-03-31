@@ -10,13 +10,13 @@
 `$ make`
 
 Two binaries will be created under `miner` directory  
-```nheqminer-cpu
+`nheqminer-cpu`  
   - USE_CPU_TROMP
   - USE_CPU_XENONCAT
+
 `nheqminer-gpu`
   - USE_CPU_XENONCAT
   - USE_CUDA_DJEZO
-```
 
 ### Precompiled binaries created using
 - macOS 10.12.4 (16E195)
