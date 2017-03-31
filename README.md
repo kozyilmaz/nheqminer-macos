@@ -35,23 +35,8 @@ NVIDIA CUDA settings
     -ct [tpb]	Number of threads per block
 Example: -cd 0 2 -cb 12 16 -ct 64 128
 ```
+simple benchmarking
+`./nheqminer -b -t 2`
 
-If run without parameters, miner will start mining with 75% of available logical CPU cores. Use parameter -h to learn about available parameters:
-
-Example to run benchmark on your CPU:
-
-        nheqminer -b
-        
-Example to mine on your CPU with your own BTC address and worker1 on NiceHash USA server:
-
-        nheqminer -l equihash.usa.nicehash.com:3357 -u YOUR_BTC_ADDRESS_HERE.worker1
-
-Example to mine on your CPU with your own BTC address and worker1 on EU server, using 6 threads:
-
-        nheqminer -l equihash.eu.nicehash.com:3357 -u YOUR_BTC_ADDRESS_HERE.worker1 -t 6
-
-<i>Note: if you have a 4-core CPU with hyper threading enabled (total 8 threads) it is best to run with only 6 threads (experimental benchmarks shows that best results are achieved with 75% threads utilized)</i>
-
-Example to mine on your CPU as well on your CUDA GPUs with your own BTC address and worker1 on EU server, using 6 CPU threads and 2 CUDA GPUs:
-
-        nheqminer -l equihash.eu.nicehash.com:3357 -u YOUR_BTC_ADDRESS_HERE.worker1 -t 6 -cd 0 1
+command line invocation for mining
+`./nheqminer <cpu-mining-args> <gpu-mining-args> -l <server:port> -u <wallet-address>.<worker>`
