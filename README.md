@@ -1,5 +1,9 @@
 # nheqminer for macOS
 
+This repository builds standalone nheqminer binaries for macOS platform without installing brew or any other package manager.
+No additional dependencies are needed, all tools (autotools, cmake etc.) and libraries (boost) are downloaded and compiled from scratch.
+Two flavours of nheqminer (SSE2 and AVX, AVX and CUDA) are built using llvm-g++ with minimal binary dependencies.
+
 ### Build instructions
 
 **NOTE: Common mistake is to clone this repo without recursive, you need to use --recursive**
@@ -53,6 +57,10 @@ Example: -cd 0 2 -cb 12 16 -ct 64 128
 ### Command line invocation for mining
 `./nheqminer <cpu-mining-args> <gpu-mining-args> -l <server:port> -u <wallet-address>.<worker>`
 
+
+## Thanks
+
+Original authors of nheqminer
 
 ## Donations
 
