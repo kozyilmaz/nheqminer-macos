@@ -8,13 +8,14 @@ NOTE: GPU miner depends on CUDA capable graphics card with "Compute Capability" 
 
 Usage
 =====
-Simple benchmarks
+Simple benchmarks:
 $ ./nheqminer-cpu -b -t 2
 $ ./nheqminer-gpu -b -cd 0
 
-Mining
-$ ./nheqminer-cpu -l equihash.eu.nicehash.com:3357 -u 1GmXRm5sEATy3Kz1hCxS1dwfXuCPkevsa.worker1 -t 6
-
+Mining examples:
+$ ./nheqminer-cpu -l equihash.eu.nicehash.com:3357 -u BITCOIN_ADDRESS.worker1 -t 6
+$ ./nheqminer-cpu -l zec.suprnova.cc:2142 -u WORKER_NAME -p WORKER_PASSWORD -t 6
+$ ./nheqminer-gpu -l eu1-zcash.flypool.org:3333 -u ZCASH_ADDRESS.worker1 -cd 0
 
 Changelog
 =========
