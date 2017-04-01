@@ -2,7 +2,7 @@
 
 This repository builds standalone `nheqminer` binaries for macOS platform without installing brew.  
 No additional dependency required, all tools (autotools, cmake etc.) and libraries (boost) are compiled from scratch.  
-Two flavours of nheqminer (SSE2 and AVX, AVX and CUDA) are built using llvm-g++ with minimal binary dependency.
+Two flavours of nheqminer (`SSE2 and AVX`,`AVX and CUDA`) are built using `llvm-g++` with minimal binary dependency.
 
 ### Build instructions
 
