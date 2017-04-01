@@ -55,7 +55,7 @@ Example: -cd 0 2 -cb 12 16 -ct 64 128
 
 
 ### Command line invocation for mining
-`./nheqminer <cpu-mining-args> <gpu-mining-args> -l <server:port> -u <wallet-address>.<worker>`
+`./nheqminer -l <server:port> -u <wallet-address>.<worker> <cpu-mining-args> <gpu-mining-args>`
 
 
 ## Thanks

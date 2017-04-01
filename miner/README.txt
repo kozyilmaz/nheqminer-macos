@@ -5,8 +5,17 @@ nheqminer-gpu (CPU & GPU, AVX and CUDA)[USE_CPU_XENONCAT, USE_CUDA_DJEZO]
 
 NOTE: GPU miner depends on CUDA capable graphics card with "Compute Capability" > 5.0 and CUDA driver for MAC (/usr/local/cuda/lib/libcuda.dylib)
 
+
 Usage
 =====
+
+Simple benchmarks
+$ ./nheqminer-cpu -b -t 2
+$ ./nheqminer-gpu -b -cd 0
+
+Mining
+$ ./nheqminer-cpu -l equihash.eu.nicehash.com:3357 -u 1GmXRm5sEATy3Kz1hCxS1dwfXuCPkevsa.worker1 -t 6
+
 
 Changelog
 =========
