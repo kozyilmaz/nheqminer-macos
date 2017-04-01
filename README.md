@@ -10,7 +10,7 @@
 `$ make`
 
 Two binaries will be created under `miner` directory  
-**NOTE: NVIDIA CUDA Toolkit 8.0 (from https://developer.nvidia.com/cuda-downloads) should be installed for nheqminer-gpu**
+**NOTE: NVIDIA CUDA Toolkit 8.0 (from https://developer.nvidia.com/cuda-downloads) should be installed to build nheqminer-gpu**
 
 ```
 nheqminer-cpu (only CPU, SSE2 and AVX)[USE_CPU_TROMP, USE_CPU_XENONCAT]  
@@ -42,6 +42,12 @@ Example: -cd 0 2 -cb 12 16 -ct 64 128
 
 ### Simple CPU benchmarking
 `./nheqminer -b -t 2`
+
+
+### Simple GPU benchmarking
+**NOTE: GPU miner depends on CUDA capable graphics card with "Compute Capability" > 5.0 and CUDA driver for MAC (/usr/local/cuda/lib/libcuda.dylib)**
+`./nheqminer -b -cd 0`
+
 
 ### Command line invocation for mining
 `./nheqminer <cpu-mining-args> <gpu-mining-args> -l <server:port> -u <wallet-address>.<worker>`
