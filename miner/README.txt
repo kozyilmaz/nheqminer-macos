@@ -17,6 +17,7 @@ $ ./nheqminer-cpu -l equihash.eu.nicehash.com:3357 -u BITCOIN_ADDRESS.worker1 -t
 $ ./nheqminer-cpu -l zec.suprnova.cc:2142 -u WORKER_NAME -p WORKER_PASSWORD -t 6
 $ ./nheqminer-gpu -l eu1-zcash.flypool.org:3333 -u ZCASH_ADDRESS.worker1 -cd 0
 
+
 Changelog
 =========
 v0.1
