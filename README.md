@@ -45,8 +45,8 @@ Example: -cd 0 2 -cb 12 16 -ct 64 128
 
 
 ### Simple GPU benchmarking
+`./nheqminer -b -cd 0` 
 **NOTE: GPU miner depends on CUDA capable graphics card with "Compute Capability" > 5.0 and CUDA driver for MAC (/usr/local/cuda/lib/libcuda.dylib)**
-`./nheqminer -b -cd 0`
 
 
 ### Command line invocation for mining
