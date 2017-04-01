@@ -60,7 +60,7 @@ Example: -cd 0 2 -cb 12 16 -ct 64 128
 
 ## Thanks
 
-Original authors of nheqminer
+Original authors of `nheqminer`
 
 ## Donations
 
