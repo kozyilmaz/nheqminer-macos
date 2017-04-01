@@ -1,8 +1,8 @@
-# nheqminer for macOS
+# nheqminer : CPU & GPU miner for macOS
 
-This repository builds standalone nheqminer binaries for macOS platform without installing brew or any other package manager.
-No additional dependencies are needed, all tools (autotools, cmake etc.) and libraries (boost) are downloaded and compiled from scratch.
-Two flavours of nheqminer (SSE2 and AVX, AVX and CUDA) are built using llvm-g++ with minimal binary dependencies.
+This repository builds standalone nheqminer binaries for macOS platform without installing brew or any other package manager.  
+No additional dependency required, all tools (autotools, cmake etc.) and libraries (boost) are compiled from scratch.
+Two flavours of nheqminer (SSE2 and AVX, AVX and CUDA) are built using llvm-g++ with minimal binary dependency.
 
 ### Build instructions
 
