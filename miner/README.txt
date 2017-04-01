@@ -8,7 +8,6 @@ NOTE: GPU miner depends on CUDA capable graphics card with "Compute Capability" 
 
 Usage
 =====
-
 Simple benchmarks
 $ ./nheqminer-cpu -b -t 2
 $ ./nheqminer-gpu -b -cd 0
