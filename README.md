@@ -2,7 +2,7 @@
 
 This repository builds standalone `nheqminer` binaries for macOS platform without installing brew.  
 No additional dependency required, all tools (`autotools, cmake etc.`) and libraries (`boost`) are compiled from scratch.  
-Two flavours of nheqminer (`SSE2 and AVX`,`AVX and CUDA`) are built using `llvm-g++` with minimal binary dependency.
+Two flavours of nheqminer (`SSE2 and AVX`, `AVX and CUDA`) are built using `llvm-g++` with minimal binary dependency.
 
 ### Build instructions
 
@@ -14,12 +14,12 @@ Two flavours of nheqminer (`SSE2 and AVX`,`AVX and CUDA`) are built using `llvm-
 `$ make`
 
 Two binaries will be created under `miner` directory  
-**NOTE: NVIDIA CUDA Toolkit 8.0 (from https://developer.nvidia.com/cuda-downloads) should be installed to build nheqminer-gpu**
 
 ```
 nheqminer-cpu (only CPU, SSE2 and AVX)[USE_CPU_TROMP, USE_CPU_XENONCAT]  
 nheqminer-gpu (CPU & GPU, AVX and CUDA)[USE_CPU_XENONCAT, USE_CUDA_DJEZO]
 ```
+**NOTE: NVIDIA CUDA Toolkit 8.0 (from https://developer.nvidia.com/cuda-downloads) should be installed to build nheqminer-gpu**
 
 ### Run instructions
 
