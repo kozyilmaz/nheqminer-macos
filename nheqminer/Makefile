@@ -10,7 +10,7 @@ OSX_CUDA_BIN := $(shell ls -d /usr/local/cuda/bin/nvcc | tail -n 1)
 OSX_CUDA_LIB := $(shell ls -d /usr/local/cuda/lib/libcuda.dylib | tail -n 1)
 ifneq ($(OSX_CUDA_BIN),)
 ifneq ($(OSX_CUDA_LIB),)
-ENABLE_CUDA=y
+ENABLE_CUDA=n
 endif
 endif
 
@@ -23,10 +23,11 @@ nheqminer_config:
 	$(call patchme,nheqminer-$(NHEQMINER_VERSION))
 	( cd nheqminer-$(NHEQMINER_VERSION)/cpu_xenoncat/asm_mac; rm -rf equihash_avx*.elf.o equihash_avx*.o ; sh assemble.sh; )
 	( mkdir -p nheqminer-cpu; cd nheqminer-cpu; \
+		CC=gcc-6.3.0 CXX=g++-6.3.0 \
 		BOOST_ROOT=${BSPROOTFS} \
 		cmake -DCMAKE_INSTALL_PREFIX=${BSPINSTALL} \
-		-DCMAKE_CXX_FLAGS="-fvisibility=hidden" \
-		-DCMAKE_EXE_LINKER_FLAGS="-L/usr/local/cuda/lib" \
+		-DCMAKE_CXX_FLAGS="-march=native" \
+		-DCMAKE_EXE_LINKER_FLAGS="-L/usr/local/cuda/lib -static-libgcc -static-libstdc++" \
 		-DUSE_CPU_TROMP=ON -DUSE_CUDA_TROMP=OFF -DUSE_CPU_XENONCAT=ON -DUSE_CUDA_DJEZO=OFF ../nheqminer-$(NHEQMINER_VERSION); \
 	)
 ifeq ($(ENABLE_CUDA),y)
