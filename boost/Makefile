@@ -13,10 +13,10 @@ boost_config:
 	( cd boost_$(BOOST_VERSION); ./bootstrap.sh --prefix=${BSPROOTFS} --without-icu --with-libraries=system,log,date_time,filesystem,thread; )
 
 boost_build:
-	( cd boost_$(BOOST_VERSION); ./b2 headers; ./b2 -j ${BSPJOB} variant=release link=static runtime-link=static threading=multi ; )
+	( cd boost_$(BOOST_VERSION); ./b2 headers; ./b2 -j ${BSPJOB} variant=release link=static runtime-link=shared threading=multi ; )
 
 boost_install:
-	( cd boost_$(BOOST_VERSION); ./b2 headers; ./b2 -j ${BSPJOB} variant=release link=static runtime-link=static threading=multi install; )
+	( cd boost_$(BOOST_VERSION); ./b2 headers; ./b2 -j ${BSPJOB} variant=release link=static runtime-link=shared threading=multi install; )
 
 boost_uninstall:
 	make -C boost_$(BOOST_VERSION) uninstall
