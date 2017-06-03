@@ -1,0 +1,15 @@
+diff --git a/source/libc/system.inc b/source/libc/system.inc
+index 88251e6..47d58cd 100644
+--- a/source/libc/system.inc
++++ b/source/libc/system.inc
+@@ -92,7 +92,9 @@ open:
+ 	stos	byte [edi]
+ 	or	al,al
+ 	jnz	copy_path
+-	cmp	edi,buffer+1000h
++	mov	eax,buffer
++	add	eax,8000000h
++	cmp	edi,eax
+ 	ja	out_of_memory
+ 	ret
+ create:

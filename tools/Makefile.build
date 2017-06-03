@@ -1,0 +1,66 @@
+
+.PHONY: clone config build install uninstall clean
+
+# debug commands
+ifeq (${PRINT_DEBUG}, y)
+OUTPUT_DEV =
+else
+OUTPUT_DEV = > /dev/null 2>&1
+endif
+
+# common macros
+# $(call patchme,DIRECTORY_TO_BE_PATCHED)
+define patchme
+	if [ -d "$(1)" ] && [ -d "patches" ] && [ ! -f ".patched" ]; then \
+		$(foreach F, $(wildcard $(shell find patches -type f \( -name "*.patch" \) | sort)), patch -d $(1) -p1 < $(F); echo $(F) >> .patched;) \
+	fi
+endef
+
+# make targets
+clone: __FORCE
+	@echo "\033[1;31m  CLONE      ${target_name}\033[0m"
+	@if [ ! -f .cloned ]; then \
+		${MAKE} ${target_name}_clone $(OUTPUT_DEV); \
+		if [ $$? -ne 0 ] ; then exit 1; else touch .cloned; fi; \
+	fi;
+
+config: clone __FORCE
+	@echo "\033[0;36m  CONFIG     ${target_name}\033[0m"
+	@if [ ! -f .configured ]; then \
+		${MAKE} ${target_name}_config $(OUTPUT_DEV); \
+		if [ $$? -ne 0 ] ; then exit 1; else touch .configured; fi; \
+	fi;
+
+build: config __FORCE
+	@echo "\033[0;35m  BUILD      ${target_name}\033[0m"
+	@if [ ! -f .built ]; then \
+		${MAKE} ${target_name}_build $(OUTPUT_DEV); \
+		if [ $$? -ne 0 ] ; then exit 1; else touch .built; fi; \
+	fi;
+
+clean: __FORCE
+	@echo "\033[0;33m  CLEAN      ${target_name}\033[0m"
+	@${MAKE} ${target_name}_clean $(OUTPUT_DEV);
+	@rm -rf .built
+	@rm -rf .configured
+
+distclean: __FORCE
+	@echo "\033[0;31m  DISTCLEAN  ${target_name}\033[0m"
+	@${MAKE} ${target_name}_distclean $(OUTPUT_DEV);
+	@rm -rf .built
+	@rm -rf .configured
+	@rm -rf .patched
+	@rm -rf .cloned
+
+install: build __FORCE
+	@echo "\033[1;34m  INSTALL    ${target_name}\033[0m"
+	@${MAKE} ${target_name}_install $(OUTPUT_DEV);
+
+uninstall: __FORCE
+	@echo "\033[1;31m  UNINSTALL  ${target_name}\033[0m"
+	@${MAKE} ${target_name}_uninstall $(OUTPUT_DEV);
+
+all: install
+
+__FORCE:
+	@true
