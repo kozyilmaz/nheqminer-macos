@@ -10,7 +10,6 @@ endif
 
 # common macros
 # $(call patchme,DIRECTORY_TO_BE_PATCHED)
-
 define patchme
 	if [ -d "$(1)" ] && [ -d "patches" ] && [ ! -f ".patched" ]; then \
 		$(foreach F, $(wildcard $(shell find patches -type f \( -name "*.patch" \) | sort)), patch -d $(1) -p1 < $(F); echo $(F) >> .patched;) \
@@ -18,7 +17,6 @@ define patchme
 endef
 
 # make targets
-
 clone: __FORCE
 	@echo "\033[1;31m  CLONE      ${target_name}\033[0m"
 	@if [ ! -f .cloned ]; then \
