@@ -1,9 +1,10 @@
 Release
 =======
 nheqminer-cpu (only CPU, SSE2 and AVX)[USE_CPU_TROMP, USE_CPU_XENONCAT]
-nheqminer-gpu (CPU & GPU, AVX and CUDA)[USE_CPU_XENONCAT, USE_CUDA_DJEZO]
+nheqminer-gpu (CPU & GPU >= SM 5.0, AVX and CUDA)[USE_CPU_XENONCAT, USE_CUDA_DJEZO]
+nheqminer-old (older GPU's < SM 5.0, using CUDA)[USE_CUDA_TROMP]
 
-NOTE: GPU miner depends on CUDA capable graphics card with "Compute Capability" > 5.0 and CUDA driver for MAC (/usr/local/cuda/lib/libcuda.dylib)
+NOTE: nheqminer-gpu depends on CUDA capable graphics card with "Compute Capability" > 5.0 and CUDA driver for MAC (/usr/local/cuda/lib/libcuda.dylib)
 
 
 Usage
@@ -11,15 +12,22 @@ Usage
 Simple benchmarks:
 $ ./nheqminer-cpu -b -t 2
 $ ./nheqminer-gpu -b -cd 0
+$ ./nheqminer-old -b -cd 0 -cv 1
 
 Mining examples:
 $ ./nheqminer-cpu -l equihash.eu.nicehash.com:3357 -u BITCOIN_ADDRESS.worker1 -t 6
 $ ./nheqminer-cpu -l zec.suprnova.cc:2142 -u WORKER_NAME -p WORKER_PASSWORD -t 6
 $ ./nheqminer-gpu -l eu1-zcash.flypool.org:3333 -u ZCASH_ADDRESS.worker1 -cd 0
+$ ./nheqminer-old -l eu1-zcash.flypool.org:3333 -u ZCASH_ADDRESS.worker1 -cd 0 -cv 1
 
 
 Changelog
 =========
+v4
+==
+* same software as v3
+* nheqminer-old added, using Tromp CUDA solver for older GPU's
+
 v3
 ==
 * nheqminer-0.5c
