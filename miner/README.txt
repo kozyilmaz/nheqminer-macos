@@ -2,7 +2,7 @@ Release
 =======
 nheqminer-cpu (only CPU, SSE2 and AVX)[USE_CPU_TROMP, USE_CPU_XENONCAT]
 nheqminer-gpu (CPU & GPU >= SM 5.0, AVX and CUDA)[USE_CPU_XENONCAT, USE_CUDA_DJEZO]
-nheqminer-old (older GPU's < SM 5.0, using CUDA)[USE_CUDA_TROMP]
+nheqminer-old (older GPU's < SM 5.0, only CUDA)[USE_CUDA_TROMP]
 
 NOTE: nheqminer-gpu depends on CUDA capable graphics card with "Compute Capability" > 5.0 and CUDA driver for MAC (/usr/local/cuda/lib/libcuda.dylib)
 
