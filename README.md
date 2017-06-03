@@ -6,9 +6,7 @@ Two flavours of nheqminer (`SSE2 and AVX`, `AVX and CUDA`) are built using `llvm
 
 ### Build instructions
 
-**NOTE: Common mistake is to clone this repo without recursive, you need to use --recursive**
-
-`$ git clone --recursive https://github.com/kozyilmaz/nheqminer-macos.git`  
+`$ git clone https://github.com/kozyilmaz/nheqminer-macos.git`  
 `$ cd nheqminer-macos`  
 `$ source environment`  
 `$ make`
@@ -19,7 +17,10 @@ Two binaries will be created under `miner` directory
 nheqminer-cpu (only CPU, SSE2 and AVX)[USE_CPU_TROMP, USE_CPU_XENONCAT]  
 nheqminer-gpu (CPU & GPU, AVX and CUDA)[USE_CPU_XENONCAT, USE_CUDA_DJEZO]
 ```
-**NOTE: NVIDIA CUDA Toolkit 8.0 (from https://developer.nvidia.com/cuda-downloads) should be installed to build nheqminer-gpu**
+**NOTE:
+NVIDIA CUDA Toolkit 8.0 (from https://developer.nvidia.com/cuda-downloads) should be installed to build nheqminer-gpu  
+CUDA compatible 'Command Line Tools macOS 10.12 for Xcode 8.2' is also needed (from https://developer.apple.com/download/more/)  
+**
 
 ### Run instructions
 
