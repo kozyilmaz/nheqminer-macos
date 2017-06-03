@@ -1,0 +1,7 @@
+#!/bin/sh
+
+BSPJOB=16
+BSPTOOLS=`pwd`
+PATH=${BSPTOOLS}/o/bin:${PATH}
+
+export BSPJOB BSPTOOLS PATH
