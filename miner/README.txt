@@ -20,6 +20,13 @@ $ ./nheqminer-gpu -l eu1-zcash.flypool.org:3333 -u ZCASH_ADDRESS.worker1 -cd 0
 
 Changelog
 =========
+v3
+==
+* nheqminer-0.5c
+* "macOS 10.12.5" (16F73)
+* "CUDA Toolkit 8.0.61" from https://developer.nvidia.com/cuda-downloads
+* "Command Line Tools (macOS 10.12) for XCode 8.2" from https://developer.apple.com/download/more/
+
 v0.1
 ====
 * nheqminer-0.5c
