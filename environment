@@ -5,7 +5,7 @@ BSPROOT=`pwd`
 BSPTOOLS=${BSPROOT}/tools/o
 BSPROOTFS=${BSPROOT}/rootfs
 BSPINSTALL=${BSPROOT}/miner  # change to /usr/local/bin if you like!
-PATH=${BSPTOOLS}/o/bin:${PATH}
+PATH=${BSPTOOLS}/bin:${PATH}
 
 export BSPJOB BSPROOT BSPTOOLS BSPROOTFS BSPINSTALL PATH
 
