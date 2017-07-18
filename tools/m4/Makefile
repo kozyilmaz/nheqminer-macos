@@ -10,16 +10,16 @@ m4_clone:
 	if [ ! -d "m4-$(M4_VERSION)" ]; then tar xzf m4-$(M4_VERSION).tar.gz; fi
 
 m4_config:
-	( cd m4-$(M4_VERSION); ./configure --prefix=${BSPTOOLS}/o )
+	( cd m4-$(M4_VERSION); ./configure --prefix=${BSPTOOLS} )
 
 m4_build:
 	make -C m4-$(M4_VERSION) -j ${BSPJOB}
 
 m4_install:
-	make -C m4-$(M4_VERSION) install
+	${BSPSUDO} make -C m4-$(M4_VERSION) install
 
 m4_uninstall:
-	make -C m4-$(M4_VERSION) uninstall
+	${BSPSUDO} make -C m4-$(M4_VERSION) uninstall
 
 m4_clean:
 	if [ -f "m4-$(M4_VERSION)/Makefile" ]; then make -C m4-$(M4_VERSION) distclean; fi

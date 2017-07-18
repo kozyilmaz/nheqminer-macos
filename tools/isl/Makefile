@@ -10,16 +10,16 @@ isl_clone:
 	if [ ! -d "isl-$(ISL_VERSION)" ]; then tar xzf isl-$(ISL_VERSION).tar.bz2; fi
 
 isl_config:
-	( cd isl-$(ISL_VERSION); ./configure --prefix=${BSPTOOLS}/o --with-gmp-prefix=${BSPTOOLS}/o --enable-static --disable-shared; )
+	( cd isl-$(ISL_VERSION); ./configure --prefix=${BSPTOOLS} --with-gmp-prefix=${BSPTOOLS} --enable-static --disable-shared; )
 
 isl_build:
 	make -C isl-$(ISL_VERSION) -j ${BSPJOB}
 
 isl_install:
-	make -C isl-$(ISL_VERSION) install
+	${BSPSUDO} make -C isl-$(ISL_VERSION) install
 
 isl_uninstall:
-	make -C isl-$(ISL_VERSION) uninstall
+	${BSPSUDO} make -C isl-$(ISL_VERSION) uninstall
 
 isl_clean:
 	if [ -f "isl-$(ISL_VERSION)/Makefile" ]; then make -C isl-$(ISL_VERSION) distclean; fi

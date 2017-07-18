@@ -10,16 +10,17 @@ pkgconfig_clone:
 	if [ ! -d "pkg-config-$(PKGCONFIG_VERSION)" ]; then tar xzf pkg-config-$(PKGCONFIG_VERSION).tar.gz; fi
 
 pkgconfig_config:
-	( cd pkg-config-$(PKGCONFIG_VERSION); ./configure --prefix=${BSPTOOLS}/o -with-internal-glib; )
+	$(call patchme,pkg-config-$(PKGCONFIG_VERSION))
+	( cd pkg-config-$(PKGCONFIG_VERSION); ./configure --prefix=${BSPTOOLS} -with-internal-glib; )
 
 pkgconfig_build:
 	make -C pkg-config-$(PKGCONFIG_VERSION) -j ${BSPJOB}
 
 pkgconfig_install:
-	make -C pkg-config-$(PKGCONFIG_VERSION) install
+	${BSPSUDO} make -C pkg-config-$(PKGCONFIG_VERSION) install
 
 pkgconfig_uninstall:
-	make -C pkg-config-$(PKGCONFIG_VERSION) uninstall
+	${BSPSUDO} make -C pkg-config-$(PKGCONFIG_VERSION) uninstall
 
 pkgconfig_clean:
 	if [ -f "pkg-config-$(PKGCONFIG_VERSION)/Makefile" ]; then make -C pkg-config-$(PKGCONFIG_VERSION) distclean; fi

@@ -15,10 +15,10 @@ objconv_build:
 	( cd objconv/src; sh ./build.sh )
 
 objconv_install:
-	if [ -f "objconv/src/objconv" ]; then cp objconv/src/objconv ${BSPTOOLS}/o/bin; fi
+	if [ -f "objconv/src/objconv" ]; then ${BSPSUDO} cp objconv/src/objconv ${BSPTOOLS}/bin; fi
 
 objconv_uninstall:
-	rm -rf ${BSPTOOLS}/o/bin/objconv
+	${BSPSUDO} rm -rf ${BSPTOOLS}/bin/objconv
 
 objconv_clean:
 	if [ -f "objconv/src/objconv" ]; then rm -rf objconv/src/objconv; fi

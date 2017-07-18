@@ -3,7 +3,7 @@ target_name ?= fasm
 
 include ../Makefile.build
 
-FASM_VERSION="1.71.62"
+FASM_VERSION="1.71.63"
 
 fasm_clone:
 	if [ ! -f "fasm-$(FASM_VERSION).tar.gz" ]; then curl -OL https://flatassembler.net/fasm-$(FASM_VERSION).tar.gz; fi;
@@ -21,10 +21,10 @@ fasm_build:
 	)
 
 fasm_install:
-	if [ -f "fasm/fasm" ]; then cp fasm/fasm ${BSPTOOLS}/o/bin; fi
+	if [ -f "fasm/fasm" ]; then ${BSPSUDO} cp fasm/fasm ${BSPTOOLS}/bin; fi
 
 fasm_uninstall:
-	rm -rf ${BSPTOOLS}/o/bin/fasm
+	${BSPSUDO} rm -rf ${BSPTOOLS}/bin/fasm
 
 fasm_clean:
 	if [ -f "fasm/fasm" ]; then rm -rf fasm/fasm; fi

@@ -10,16 +10,16 @@ libtool_clone:
 	if [ ! -d "libtool-$(LIBTOOL_VERSION)" ]; then tar xzf libtool-$(LIBTOOL_VERSION).tar.gz; fi
 
 libtool_config:
-	( cd libtool-$(LIBTOOL_VERSION); ./configure --prefix=${BSPTOOLS}/o --program-prefix=g --enable-static --disable-shared ; )
+	( cd libtool-$(LIBTOOL_VERSION); ./configure --prefix=${BSPTOOLS} --program-prefix=g --enable-static --disable-shared ; )
 
 libtool_build:
 	make -C libtool-$(LIBTOOL_VERSION) -j ${BSPJOB}
 
 libtool_install:
-	make -C libtool-$(LIBTOOL_VERSION) install
+	${BSPSUDO} make -C libtool-$(LIBTOOL_VERSION) install
 
 libtool_uninstall:
-	make -C libtool-$(LIBTOOL_VERSION) uninstall
+	${BSPSUDO} make -C libtool-$(LIBTOOL_VERSION) uninstall
 
 libtool_clean:
 	if [ -f "libtool-$(LIBTOOL_VERSION)/Makefile" ]; then make -C libtool-$(LIBTOOL_VERSION) distclean; fi
