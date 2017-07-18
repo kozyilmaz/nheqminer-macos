@@ -23,3 +23,36 @@ $ git subtree pull --prefix=tools/ --squash tools-remote master
 $ git log | grep git-subtree-dir | tr -d ' ' | cut -d ":" -f2 | sort | uniq
 $ git log | grep git-subtree-dir | tr -d ' ' | cut -d ":" -f2 | sort | uniq | xargs -I {} bash -c 'if [ -d $(git rev-parse --show-toplevel)/{} ] ; then echo {}; fi'
 ```
+
+### working with forks
+```
+$ git clone https://github.com/<your_username>/<forked_repo>.git
+$ git remote add upstream https://github.com/<forked_username>/<forked_repo>.git
+$ git fetch upstream
+$ git merge upstream/master
+```
+
+### working with branches
+```
+$ git branch <branch>
+$ git checkout <branch>
+$ git push -u origin <branch>
+```
+
+### revert a single commit
+```
+$ git checkout <branch>
+$ git revert <commit>
+$ git push origin <branch>
+```
+
+### tag tree
+```
+$ git tag <tagname>
+$ git push origin --tags
+```
+
+### reference GitHub issue or pull request
+```
+https://github.com/<user>/<repo>/issues/<number>
+```

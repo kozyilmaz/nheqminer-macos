@@ -16,12 +16,12 @@ kconfig_build:
 	PKG_CONFIG_PATH="" make CC="gcc" HOSTCC="gcc" obj=. -C kconfig-$(KCONFIG_VERSION) -f Makefile.br mconf
 
 kconfig_install:
-	if [ -f "kconfig-$(KCONFIG_VERSION)/conf" ]; then cp kconfig-$(KCONFIG_VERSION)/conf ${BSPTOOLS}/o/bin; fi
-	if [ -f "kconfig-$(KCONFIG_VERSION)/mconf" ]; then cp kconfig-$(KCONFIG_VERSION)/mconf ${BSPTOOLS}/o/bin; fi
+	if [ -f "kconfig-$(KCONFIG_VERSION)/conf" ]; then ${BSPSUDO} cp kconfig-$(KCONFIG_VERSION)/conf ${BSPTOOLS}/bin; fi
+	if [ -f "kconfig-$(KCONFIG_VERSION)/mconf" ]; then ${BSPSUDO} cp kconfig-$(KCONFIG_VERSION)/mconf ${BSPTOOLS}/bin; fi
 
 kconfig_uninstall:
-	rm -rf ${BSPTOOLS}/o/bin/conf
-	rm -rf ${BSPTOOLS}/o/bin/mconf
+	${BSPSUDO} rm -rf ${BSPTOOLS}/bin/conf
+	${BSPSUDO} rm -rf ${BSPTOOLS}/bin/mconf
 
 kconfig_clean:
 	if [ -d "kconfig-$(KCONFIG_VERSION)" ]; then PKG_CONFIG_PATH="" make CC="gcc" HOSTCC="gcc" obj=. -C kconfig-$(KCONFIG_VERSION) -f Makefile.br distclean; fi

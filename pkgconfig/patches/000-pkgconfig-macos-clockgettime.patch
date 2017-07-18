@@ -1,0 +1,12 @@
+diff -Nuarp pkg-config-0.29.2/glib/glib/gmain.c pkg-config-0.29.2.mod/glib/glib/gmain.c
+--- pkg-config-0.29.2/glib/glib/gmain.c	2016-04-12 00:39:26.000000000 +0300
++++ pkg-config-0.29.2.mod/glib/glib/gmain.c	2017-07-13 09:46:12.000000000 +0300
+@@ -2540,7 +2540,7 @@ g_clock_win32_init (void)
+ gint64
+ g_get_monotonic_time (void)
+ {
+-#ifdef HAVE_CLOCK_GETTIME
++#if 0 /* disabled due to multiple failure reports involving Hackintosh'es and brew installations */
+   /* librt clock_gettime() is our first choice */
+   struct timespec ts;
+ 

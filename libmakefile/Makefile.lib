@@ -170,35 +170,11 @@
 
 TOPDIR ?= $(CURDIR)
 
-uname_S := $(shell sh -c 'uname -s 2>/dev/null || echo not')
-
-override CFLAGS += -Wall -Wextra -pipe -g3 -O2 -fPIC -fsigned-char -fno-strict-aliasing -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
-# -fvisibility=hidden
-
-#override CFLAGS += -fno-math-errno -fno-trapping-math
-
-ifeq ($(uname_S),Linux)
-	override __LINUX__  = y
-	override MFLAGS    += __LINUX__=y
-	override CFLAGS    += -D__LINUX__=1
-#	override CFLAGS    += -fassociative-math -fno-signed-zeros
-endif
-ifeq ($(uname_S),Darwin)
-	override __DARWIN__  = y
-	override MFLAGS     += __DARWIN__=y
-	override CFLAGS     += -D__DARWIN__=1
-	override CFLAGS     += -I/opt/local/include
-#	override CFLAGS     += -fassociative-math -fno-signed-zeros
-	override LDOPTS     += -keep_private_externs
-endif
-
-MAKE       := + CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" TOPDIR='$(TOPDIR)' uname_S=$(uname_S) $(MAKE) $(MFLAGS) --no-print-directory
-
 CC         := $(CROSS_COMPILE_PREFIX)gcc $(SYSROOT)
 CXX        := $(CROSS_COMPILE_PREFIX)g++ $(SYSROOT)
 CPP        := $(CROSS_COMPILE_PREFIX)cpp $(SYSROOT)
 LD         := $(CROSS_COMPILE_PREFIX)ld
-AR         := $(CROSS_COMPILE_PREFIX)ar rcs
+AR         := $(CROSS_COMPILE_PREFIX)ar
 RANLIB     := $(CROSS_COMPILE_PREFIX)ranlib
 STRIP      := $(CROSS_COMPILE_PREFIX)strip -sx
 MOC        ?= $(CROSS_COMPILE_PREFIX)moc
@@ -207,7 +183,7 @@ HOSTCC     := $(HOST_COMPILE_PREFIX)gcc
 HOSTCXX    := $(HOST_COMPILE_PREFIX)g++
 HOSTCPP    := $(HOST_COMPILE_PREFIX)cpp
 HOSTLD     := $(HOST_COMPILE_PREFIX)ld
-HOSTAR     := $(HOST_COMPILE_PREFIX)ar rcs
+HOSTAR     := $(HOST_COMPILE_PREFIX)ar
 HOSTRANLIB := $(HOST_COMPILE_PREFIX)ranlib
 HOSTSTRIP  := $(HOST_COMPILE_PREFIX)strip
 HOSTMOC    ?= $(HOST_COMPILE_PREFIX)moc
@@ -219,6 +195,42 @@ CP         := cp -rf
 MV         := mv
 RM         := rm -rf
 MKDIR      := mkdir -p
+
+override CFLAGS += -Wall -Wextra -pipe -g3 -O2 -fsigned-char -fno-strict-aliasing -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
+# -fvisibility=hidden
+
+#override CFLAGS += -fno-math-errno -fno-trapping-math
+
+uname_S := $(shell sh -c 'uname -s 2>/dev/null || echo not')
+TARGET_MACHINE := $(subst -, ,$(shell $(CC) -dumpmachine))
+
+ifneq ($(findstring mingw, $(TARGET_MACHINE)),)
+TARGET_OS := WINDOWS
+else ifneq ($(findstring apple, $(TARGET_MACHINE)),)
+TARGET_OS := MACOS
+else ifneq ($(findstring linux, $(TARGET_MACHINE)),)
+TARGET_OS := LINUX
+else
+TARGET_OS := UNKNOWN
+endif
+
+ifeq      ($(TARGET_OS),WINDOWS)
+else ifeq ($(TARGET_OS),MACOS)
+	override __DARWIN__  = y
+	override MFLAGS     += __DARWIN__=y
+	override CFLAGS     += -D__DARWIN__=1
+	override CFLAGS     += -I/opt/local/include
+	override CFLAGS     += -fPIC
+#	override CFLAGS     += -fassociative-math -fno-signed-zeros
+	override LDOPTS     += -keep_private_externs
+else ifeq ($(TARGET_OS),LINUX)
+	override __LINUX__  = y
+	override MFLAGS    += __LINUX__=y
+	override CFLAGS    += -D__LINUX__=1 -fPIC
+#	override CFLAGS    += -fassociative-math -fno-signed-zeros -fPIC
+endif
+
+MAKE       := + CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" TOPDIR='$(TOPDIR)' uname_S=$(uname_S) TARGET_OS=$(TARGET_OS) $(MAKE) $(MFLAGS) --no-print-directory
 
 all:
 
@@ -398,7 +410,7 @@ _cmd_compile.c      = $(CC) $(CFLAGS) $(CXXFLAGS) $($1_cflags) $($1_cxxflags) \
 _cmd_link.c         = $(CC) $(CFLAGS) $(CXXFLAGS) $($1_libraries) -o $$@ $$(filter-out __FORCE $($1_depends-y),$$^) \
                       $($1_ldflags) $(LDFLAGS)
 _cmd_link_so.c      = $(CC) $(CFLAGS) $(CXXFLAGS) $($1_libraries) -o $$@ $$(filter-out __FORCE $($1_depends-y),$$^) \
-                      $($1_ldflags) $(LDFLAGS) -shared
+                      $($1_ldflags) $$(filter-out -static,$(LDFLAGS)) -shared
 
 _cmd_depend.c.host  = $(HOSTCC) $(CFLAGS) $(CXXFLAGS) $($1_cflags) \
                       $($1_cxxflags) $($1_includes) -M $$< | $(SED) \
@@ -408,7 +420,7 @@ _cmd_compile.c.host = $(HOSTCC) $(CFLAGS) $(CXXFLAGS) $($1_cflags) \
 _cmd_link.c.host    = $(HOSTCC) $(CFLAGS) $(CXXFLAGS) $($1_libraries) -o $$@ $$(filter-out __FORCE $($1_depends-y),$$^) \
                       $($1_ldflags) $(LDFLAGS)
 _cmd_link_so.c.host = $(HOSTCC) $(CFLAGS) $(CXXFLAGS) $($1_libraries) -o $$@ $$(filter-out __FORCE $($1_depends-y),$$^) \
-                      $($1_ldflags) $(LDFLAGS) -shared
+                      $($1_ldflags) $$(filter-out -static,$(LDFLAGS)) -shared
 
 _cmd_depend.cxx       = $(CXX) $(CFLAGS) $(CXXFLAGS) $($1_cflags) $($1_cxxflags) \
                         $($1_includes) -M $$< | $(SED) 's,\($$*\.o\) *:,.$1/\1 \
@@ -418,7 +430,7 @@ _cmd_compile.cxx      = $(CXX) $(CFLAGS) $(CXXFLAGS) $($1_cflags) $($1_cxxflags)
 _cmd_link.cxx         = $(CXX) $(CFLAGS) $(CXXFLAGS) $($1_libraries) -o $$@ $$(filter-out __FORCE $($1_depends-y),$$^) \
                         $($1_ldflags) $(LDFLAGS)
 _cmd_link_so.cxx      = $(CXX) $(CFLAGS) $(CXXFLAGS) $($1_libraries) -o $$@ $$(filter-out __FORCE $($1_depends-y),$$^) \
-                        $($1_ldflags) $(LDFLAGS) -shared
+                        $($1_ldflags) $$(filter-out -static,$(LDFLAGS)) -shared
 
 _cmd_depend.cxx.host  = $(HOSTCXX) $(CFLAGS) $(CXXFLAGS) $($1_cflags) \
                         $($1_cxxflags) $($1_includes) -M $$< | $(SED) \
@@ -428,7 +440,7 @@ _cmd_compile.cxx.host = $(HOSTCXX) $(CFLAGS) $(CXXFLAGS) $($1_cflags) \
 _cmd_link.cxx.host    = $(HOSTCXX) $(CFLAGS) $(CXXFLAGS) $($1_libraries) -o $$@ $$(filter-out __FORCE $($1_depends-y),$$^) \
                         $($1_ldflags) $(LDFLAGS)
 _cmd_link_so.cxx.host = $(HOSTCXX) $(CFLAGS) $(CXXFLAGS) $($1_libraries) -o $$@ $$(filter-out __FORCE $($1_depends-y),$$^) \
-                        $($1_ldflags) $(LDFLAGS) -shared
+                        $($1_ldflags) $$(filter-out -static,$(LDFLAGS)) -shared
 
 _cmd_moc.cxx          = $(MOC) $$< -o $$@
 
@@ -442,7 +454,7 @@ _cmd_compile.m        = $(CC) $(CFLAGS) $(CXXFLAGS) $($1_cflags) $($1_cxxflags) 
 _cmd_link.m           = $(CC) $(CFLAGS) $(CXXFLAGS) $($1_libraries) -o $$@ $$(filter-out __FORCE $($1_depends-y),$$^) \
                         $($1_ldflags) $(LDFLAGS)
 _cmd_link_so.m        = $(CC) $(CFLAGS) $(CXXFLAGS) $($1_libraries) -o $$@ $$(filter-out __FORCE $($1_depends-y),$$^) \
-                        $($1_ldflags) $(LDFLAGS) -shared
+                        $($1_ldflags) $$(filter-out -static,$(LDFLAGS)) -shared
 
 _cmd_depend.m.host    = $(HOSTCC) $(CFLAGS) $(CXXFLAGS) $($1_cflags) \
                         $($1_cxxflags) $($1_includes) -M $$< | $(SED) \
@@ -452,9 +464,9 @@ _cmd_compile.m.host   = $(HOSTCC) $(CFLAGS) $(CXXFLAGS) $($1_cflags) \
 _cmd_link.m.host      = $(HOSTCC) $(CFLAGS) $(CXXFLAGS) $($1_libraries) -o $$@ $$(filter-out __FORCE $($1_depends-y),$$^) \
                         $($1_ldflags) $(LDFLAGS)
 _cmd_link_so.m.host   = $(HOSTCC) $(CFLAGS) $(CXXFLAGS) $($1_libraries) -o $$@ $$(filter-out __FORCE $($1_depends-y),$$^) \
-                        $($1_ldflags) $(LDFLAGS) -shared
+                        $($1_ldflags) $$(filter-out -static,$(LDFLAGS)) -shared
 
-_cmd_ar               = $(AR) $$@ $$(filter-out __FORCE $($1_depends-y),$$^)
+_cmd_ar               = $(AR) rcs $$@ $$(filter-out __FORCE $($1_depends-y),$$^)
 _cmd_ranlib           = $(RANLIB) $$@
 _cmd_ld               = $(LD) $(LDOPTS) -r -o $$@ $$(filter-out __FORCE $($1_depends-y),$$^)
 

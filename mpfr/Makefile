@@ -10,16 +10,16 @@ mpfr_clone:
 	if [ ! -d "mpfr-$(MPFR_VERSION)" ]; then tar xzf mpfr-$(MPFR_VERSION).tar.bz2; fi
 
 mpfr_config:
-	( cd mpfr-$(MPFR_VERSION); ./configure --prefix=${BSPTOOLS}/o --with-gmp=${BSPTOOLS}/o --enable-static --disable-shared; )
+	( cd mpfr-$(MPFR_VERSION); ./configure --prefix=${BSPTOOLS} --with-gmp=${BSPTOOLS} --enable-static --disable-shared; )
 
 mpfr_build:
 	make -C mpfr-$(MPFR_VERSION) -j ${BSPJOB}
 
 mpfr_install:
-	make -C mpfr-$(MPFR_VERSION) install
+	${BSPSUDO} make -C mpfr-$(MPFR_VERSION) install
 
 mpfr_uninstall:
-	make -C mpfr-$(MPFR_VERSION) uninstall
+	${BSPSUDO} make -C mpfr-$(MPFR_VERSION) uninstall
 
 mpfr_clean:
 	if [ -f "mpfr-$(MPFR_VERSION)/Makefile" ]; then make -C mpfr-$(MPFR_VERSION) distclean; fi
