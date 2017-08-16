@@ -16,12 +16,11 @@ Two binaries will be created under `miner` directory
 ```
 nheqminer-cpu (only CPU, SSE2 and AVX)[USE_CPU_TROMP, USE_CPU_XENONCAT]  
 nheqminer-gpu (CPU & GPU >= SM 5.0, AVX and CUDA)[USE_CPU_XENONCAT, USE_CUDA_DJEZO]  
-nheqminer-old (older GPU's < SM 5.0, only CUDA)[USE_CUDA_TROMP]  
 ```
 **IMPORTANT NOTE:**  
 **NVIDIA CUDA Toolkit 8.0 (from https://developer.nvidia.com/cuda-downloads) should be installed**  
 **CUDA compatible 'Command Line Tools macOS 10.12 for Xcode 8.2' is needed (from https://developer.apple.com/download/more/)**  
-**nheqminer-gpu depends on CUDA capable graphics card with "Compute Capability" > 5.0, for older cards use nheqminer-old**  
+**nheqminer-gpu depends on CUDA capable graphics card with "Compute Capability" > 5.0**  
 
 ### Run instructions
 
@@ -51,7 +50,6 @@ Example: -cd 0 2 -cb 12 16 -ct 64 128
 
 ### Simple GPU benchmarking
 `./nheqminer-gpu -b -cd 0`  
-`./nheqminer-old -b -cd 0 -cv 1`  
 
 ### Command line invocation for mining
 `./nheqminer-xxx -l <server:port> -u <wallet-address>.<worker> <cpu-mining-args> <gpu-mining-args>`
