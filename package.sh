@@ -40,12 +40,19 @@ export BSPINSTALL=${BSPROOT}/nheqminer-macos-$release_version;
 mkdir -p ${BSPINSTALL}
 make
 cp -a miner/* ${BSPINSTALL}
-echo "nheqminer:"     > ${BSPINSTALL}/version.txt
+echo "nheqminer"      > ${BSPINSTALL}/version.txt
+echo "========="     >> ${BSPINSTALL}/version.txt
 echo $git_rev_string >> ${BSPINSTALL}/version.txt
 echo $git_tag_string >> ${BSPINSTALL}/version.txt
-echo "platform:" >> ${BSPINSTALL}/version.txt; sw_vers &>> ${BSPINSTALL}/version.txt
-echo "compiler:" >> ${BSPINSTALL}/version.txt; gcc -v  &>> ${BSPINSTALL}/version.txt
-echo "cuda:"     >> ${BSPINSTALL}/version.txt; /usr/local/cuda/bin/nvcc --version &>> ${BSPINSTALL}/version.txt
+echo "platform" >> ${BSPINSTALL}/version.txt
+echo "========" >> ${BSPINSTALL}/version.txt
+sw_vers         >> ${BSPINSTALL}/version.txt
+echo "compiler" >> ${BSPINSTALL}/version.txt
+echo "========" >> ${BSPINSTALL}/version.txt
+gcc -v         2>> ${BSPINSTALL}/version.txt
+echo "cuda"     >> ${BSPINSTALL}/version.txt
+echo "===="     >> ${BSPINSTALL}/version.txt
+/usr/local/cuda/bin/nvcc --version >> ${BSPINSTALL}/version.txt
 
 echo "nheqminer for macOS ($release_version) is installed to ${BSPINSTALL}"
 
