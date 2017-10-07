@@ -25,7 +25,7 @@ Changelog
 v5
 ==
 * initial CUDA 9.0 support added
-* nheqminer-old removed
+* nheqminer-old using a patched Djezo CUDA solver tuned for > SM 3.0
 
 v4
 ==
