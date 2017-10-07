@@ -3,7 +3,7 @@ target_name ?= mpfr
 
 include ../Makefile.build
 
-MPFR_VERSION="3.1.5"
+MPFR_VERSION="3.1.6"
 
 mpfr_clone:
 	if [ ! -f "mpfr-$(MPFR_VERSION).tar.gz" ]; then curl -OL http://ftp.gnu.org/gnu/mpfr/mpfr-$(MPFR_VERSION).tar.bz2; fi;
