@@ -7,3 +7,6 @@
 
 # gpu
 # while true; do ./nheqminer-gpu -l eu1-zcash.flypool.org:3333 -u WALLET_ADDRESS.WORKER_NAME -cd 0; echo "sleep & restart"; sleep 30; done
+
+# old
+# while true; do ./nheqminer-old -l eu1-zcash.flypool.org:3333 -u WALLET_ADDRESS.WORKER_NAME -cd 0; echo "sleep & restart"; sleep 30; done
