@@ -37,6 +37,7 @@ export BSPJOB=16;
 export BSPINSTALL=${BSPROOT}/nheqminer-macos-$release_version;
 
 # build tools
+mkdir -p ${BSPINSTALL}
 make
 cp -a miner/* ${BSPINSTALL}
 echo $git_rev_string  > ${BSPINSTALL}/version.txt
