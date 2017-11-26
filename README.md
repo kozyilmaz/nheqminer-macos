@@ -65,6 +65,6 @@ Original authors of `nheqminer`
 
 If you feel this project is useful to you. Feel free to donate.
 
-    BTC address: 1GmXRm5sEATy3Kz1hCxS1dwfXuCPkevsa
+    BTC address: 16tBzFMfC9Nj5i9n3xYGdipNFbYTyFTHWt
     ZEC address: t1MW8Vx4SF1ewmL3rTN8UfRxULFTaugh1ab
 
