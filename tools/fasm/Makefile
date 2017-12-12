@@ -3,7 +3,7 @@ target_name ?= fasm
 
 include ../Makefile.build
 
-FASM_VERSION="1.71.64"
+FASM_VERSION="1.72"
 
 fasm_clone:
 	if [ ! -f "fasm-$(FASM_VERSION).tar.gz" ]; then curl -OL https://flatassembler.net/fasm-$(FASM_VERSION).tar.gz; fi;
