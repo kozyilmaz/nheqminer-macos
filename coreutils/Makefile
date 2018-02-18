@@ -3,7 +3,7 @@ target_name ?= coreutils
 
 include ../Makefile.build
 
-COREUTILS_VERSION="8.28"
+COREUTILS_VERSION="8.29"
 
 coreutils_clone:
 	if [ ! -f "coreutils-$(COREUTILS_VERSION).tar.xz" ]; then curl -OL https://ftp.gnu.org/gnu/coreutils/coreutils-$(COREUTILS_VERSION).tar.xz; fi;
