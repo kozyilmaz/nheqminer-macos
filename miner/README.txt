@@ -26,6 +26,8 @@ v8
 ==
 * CUDA Toolkit 9.1 support with Xcode 9.2
 * tested on macOS High Sierra 10.13.3 (17D47)
+* CUDA Driver Version: 387.128
+* GPU Driver Version: 387.10.10.10.25.156 (GTX 960)
 
 v5
 ==
