@@ -22,7 +22,7 @@ $ ./nheqminer-old -l eu1-zcash.flypool.org:3333 -u ZCASH_ADDRESS.worker1 -cd 0
 
 Changelog
 =========
-v8
+v9
 ==
 * CUDA Toolkit 9.1 support with Xcode 9.2
 * tested on macOS High Sierra 10.13.3 (17D47)
