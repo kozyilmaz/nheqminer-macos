@@ -1,0 +1,8 @@
+.pydevproject
+.cproject
+.project
+.settings
+xcuserdata
+xcshareddata
+.DS_Store
+.vscode

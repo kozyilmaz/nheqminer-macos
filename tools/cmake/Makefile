@@ -3,14 +3,14 @@ target_name ?= cmake
 
 include ../Makefile.build
 
-CMAKE_VERSION="3.10.0"
+CMAKE_VERSION="3.10.2"
 
 cmake_clone:
 	if [ ! -f "cmake-$(CMAKE_VERSION).tar.gz" ]; then curl -OL https://cmake.org/files/v3.10/cmake-$(CMAKE_VERSION).tar.gz; fi;
 	if [ ! -d "cmake-$(CMAKE_VERSION)" ]; then tar xzf cmake-$(CMAKE_VERSION).tar.gz; fi
 
 cmake_config:
-	( cd cmake-$(CMAKE_VERSION); CFLAGS="" CXXFLAGS="" ./bootstrap --prefix=${BSPTOOLS}; )
+	( cd cmake-$(CMAKE_VERSION); CFLAGS="" CXXFLAGS="" ./bootstrap --parallel=${BSPJOB} --prefix=${BSPTOOLS} --no-qt-gui; )
 
 cmake_build:
 	make -C cmake-$(CMAKE_VERSION) -j ${BSPJOB}

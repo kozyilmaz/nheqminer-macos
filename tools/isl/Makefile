@@ -10,7 +10,7 @@ isl_clone:
 	if [ ! -d "isl-$(ISL_VERSION)" ]; then tar xzf isl-$(ISL_VERSION).tar.bz2; fi
 
 isl_config:
-	( cd isl-$(ISL_VERSION); ./configure --prefix=${BSPTOOLS} --with-gmp-prefix=${BSPTOOLS} --enable-static --disable-shared; )
+	( cd isl-$(ISL_VERSION); CFLAGS="" CXXFLAGS="" ./configure --prefix=${BSPTOOLS} --with-gmp-prefix=${BSPTOOLS} --enable-static --disable-shared; )
 
 isl_build:
 	make -C isl-$(ISL_VERSION) -j ${BSPJOB}
