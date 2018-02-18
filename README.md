@@ -17,7 +17,7 @@ In case of an error please run the following command for debug info
 $ PRINT_DEBUG=y make all
 ```
 
-After successful compilation, two binaries will be created under `miner` directory  
+After successful compilation, three binaries will be created under `miner` directory  
 
 ```
 nheqminer-cpu (only CPU, SSE2 and AVX)[USE_CPU_TROMP, USE_CPU_XENONCAT]  
