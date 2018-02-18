@@ -5,13 +5,19 @@ No additional dependency required, all tools (`autotools, cmake etc.`) and libra
 Two flavours of nheqminer (`SSE2 and AVX`, `AVX and CUDA`) are built using `llvm-g++` with minimal binary dependency.
 
 ### Build instructions
+```shell
+$ git clone https://github.com/kozyilmaz/nheqminer-macos.git
+$ cd nheqminer-macos
+$ source environment
+$ make
+```
 
-`$ git clone https://github.com/kozyilmaz/nheqminer-macos.git`  
-`$ cd nheqminer-macos`  
-`$ source environment`  
-`$ make`
+In case of an error please run the following command for debug info
+```shell
+$ PRINT_DEBUG=y make all
+```
 
-Two binaries will be created under `miner` directory  
+After successful compilation, two binaries will be created under `miner` directory  
 
 ```
 nheqminer-cpu (only CPU, SSE2 and AVX)[USE_CPU_TROMP, USE_CPU_XENONCAT]  
@@ -19,8 +25,8 @@ nheqminer-gpu (CPU & GPU >= SM 5.0, AVX and CUDA)[USE_CPU_XENONCAT, USE_CUDA_DJE
 nheqminer-old (older GPU's >= SM 3.0 & < SM 5.0, AVX and CUDA)[USE_CPU_XENONCAT, USE_CUDA_DJEZO]  
 ```
 **IMPORTANT NOTE:**  
-**NVIDIA CUDA Toolkit 8.0 or 9.0 (from https://developer.nvidia.com/cuda-downloads) should be installed**  
-**CUDA compatible 'Command Line Tools macOS 10.12 for Xcode 8.2' (for CUDA 8.0) or 'Command Line Tools macOS 10.12 for Xcode 8.3.2' (for CUDA 9.0) is needed (from https://developer.apple.com/download/more/)**  
+**NVIDIA CUDA Toolkit 9.1 (from https://developer.nvidia.com/cuda-downloads) should be installed**  
+**CUDA Toolkit 9.1 compatible 'Command Line Tools for Xcode 9.2' is needed (from https://developer.apple.com/download/more/)**  
 
 **nheqminer-gpu depends on CUDA capable graphics card with "Compute Capability" >= 5.0, for older ("Compute Capability" >= 3.0) cards use nheqminer-old**  
 
