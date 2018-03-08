@@ -41,6 +41,7 @@
 #   20180121 - qt uic support
 #   20180123 - add ./ to includes-y and libriries-y by default
 #   20180204 - seemless qt .moc, .ui support
+#   20180228 - rename distdir to dist.dir
 
 #
 # Example
@@ -71,7 +72,7 @@
 #                        -O2
 #     target2_ldflags-y = -luserdefined
 #
-#     distdir = dist
+#     dist.dir = dist
 #
 #     dist.bin = target1
 # 
@@ -167,11 +168,11 @@
 # Distribution Commands
 # ---------------------
 #
-#    distdir                            : distribution folder
+#    dist.dir                            : distribution folder
 #
-#    dist.obj-[y,n ]                    : files to be copied under $(distdir)/obj directory
-#    dist.lib-[y,n ]                    : files to be copied under $(distdir)/lib directory
-#    dist.bin-[y,n ]                    : files to be copied under $(distdir)/bin directory
+#    dist.obj-[y,n ]                    : files to be copied under $(dist.dir)/obj directory
+#    dist.lib-[y,n ]                    : files to be copied under $(dist.dir)/lib directory
+#    dist.bin-[y,n ]                    : files to be copied under $(dist.dir)/bin directory
 #
 
 TOPDIR ?= $(CURDIR)
@@ -875,25 +876,22 @@ define dist-defaults
     $(eval $1_dname          = $(dir $1))
     $(eval $1_names          = $1)
     $(eval $1_files          = $(subst $($1_dname), , $($1_names)))
+    $(eval $1_files          = $1)
     $(eval target-cleans    += $1_distclean)
-    $(eval target-dists     += $(addprefix $(distdir)/$2/, $($1_files)))
+    $(eval target-dists     += $(addprefix $(dist.dir)/$2/, $($1_files)))
 
-    $(distdir)/$2: $(distdir)
+    $(dist.dir)/$2: $(dist.dir)
 
-    $(addprefix $(distdir)/$2/, $($1_files)): $1
+    $(addprefix $(dist.dir)/$2/, $($1_files)): $1
 	$(do_dist)
 
     $1_distclean: __FORCE
-	$(do_distclean) $(addprefix $(distdir)/$2/, $($1_files))
-	$(Q)if [ -e '$$(abspath $(distdir))' ]; then find '$$(abspath $(distdir))' -depth -type d -empty -exec rm -rf {} \; ; fi
+	$(do_distclean) $(addprefix $(dist.dir)/$2/, $($1_files))
+	$(Q)if [ -e '$$(abspath $(dist.dir))' ]; then find '$$(abspath $(dist.dir))' -depth -type d -empty -exec rm -rf {} \; ; fi
 endef
 
-define dist.changelog-variables
-    $(eval $(call dist-defaults,$1,changelog))
-endef
-
-define dist.license-variables
-    $(eval $(call dist-defaults,$1,license))
+define dist.share-variables
+    $(eval $(call dist-defaults,$1,share/${dist.base}))
 endef
 
 define dist.include-variables
@@ -910,10 +908,6 @@ endef
 
 define dist.bin-variables
     $(eval $(call dist-defaults,$1,bin))
-endef
-
-define dist.config-variables
-    $(eval $(call dist-defaults,$1,config))
 endef
 
 #
@@ -962,15 +956,13 @@ $(eval $(foreach S,$(subdir-),$(eval $(call subdir_empty-defaults,$S,clean))))
 
 # distributin tags
 
-ifneq ($(distdir),)
+ifneq ($(dist.dir),)
 
 $(eval $(foreach D,$(dist.bin-y), $(eval $(call dist.bin-variables,$D))))
 $(eval $(foreach D,$(dist.lib-y), $(eval $(call dist.lib-variables,$D))))
 $(eval $(foreach D,$(dist.obj-y), $(eval $(call dist.obj-variables,$D))))
 $(eval $(foreach D,$(dist.include-y), $(eval $(call dist.include-variables,$D))))
-$(eval $(foreach D,$(dist.changelog-y), $(eval $(call dist.changelog-variables,$D))))
-$(eval $(foreach D,$(dist.license-y), $(eval $(call dist.license-variables,$D))))
-$(eval $(foreach D,$(dist.config-y), $(eval $(call dist.config-variables,$D))))
+$(eval $(foreach D,$(dist.share-y), $(eval $(call dist.share-variables,$D))))
 
 endif
 
