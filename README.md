@@ -25,8 +25,8 @@ nheqminer-gpu (CPU & GPU >= SM 5.0, AVX and CUDA)[USE_CPU_XENONCAT, USE_CUDA_DJE
 nheqminer-old (older GPU's >= SM 3.0 & < SM 5.0, AVX and CUDA)[USE_CPU_XENONCAT, USE_CUDA_DJEZO]  
 ```
 **IMPORTANT NOTE:**  
-**NVIDIA CUDA Toolkit 9.1 (from https://developer.nvidia.com/cuda-downloads) should be installed**  
-**CUDA Toolkit 9.1 compatible 'Command Line Tools for Xcode 9.2' is needed (from https://developer.apple.com/download/more/)**  
+**NVIDIA CUDA Toolkit 9.2 (from https://developer.nvidia.com/cuda-downloads) should be installed**  
+**CUDA Toolkit 9.2 compatible 'Command Line Tools for Xcode 9.2' is needed (from https://developer.apple.com/download/more/)**  
 
 **nheqminer-gpu depends on CUDA capable graphics card with "Compute Capability" >= 5.0, for older ("Compute Capability" >= 3.0) cards use nheqminer-old**  
 
