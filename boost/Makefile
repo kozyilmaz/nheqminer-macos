@@ -3,10 +3,10 @@ target_name ?= boost
 
 include ../Makefile.build
 
-BOOST_VERSION="1_66_0"
+BOOST_VERSION="1_67_0"
 
 boost_clone:
-	if [ ! -f "boost_$(BOOST_VERSION).tar.bz2" ]; then curl -OL https://sourceforge.net/projects/boost/files/boost/1.66.0/boost_$(BOOST_VERSION).tar.bz2; fi
+	if [ ! -f "boost_$(BOOST_VERSION).tar.bz2" ]; then curl -OL https://sourceforge.net/projects/boost/files/boost/1.67.0/boost_$(BOOST_VERSION).tar.bz2; fi
 	if [ ! -d "boost_$(BOOST_VERSION)" ]; then tar xvf boost_$(BOOST_VERSION).tar.bz2; fi
 
 boost_config:
